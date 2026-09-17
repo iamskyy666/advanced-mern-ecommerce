@@ -6,6 +6,8 @@ import morgan from "morgan";
 import { ok } from "./utils/envelope";
 import { errorHandler } from "./middlewares/errHandler.middleware";
 import { notFound } from "./middlewares/notFound.middleware";
+import { clerkMiddleware } from "@clerk/express";
+import { authRouter } from "./routes/auth/auth.routes";
 
 async function mainEntry() {
   await connectDB();
@@ -27,6 +29,7 @@ async function mainEntry() {
 
   app.use(express.json());
   app.use(morgan("dev"));
+  app.use(clerkMiddleware());
 
   // endpoints
   app.get("/health", (_req, res) => {
@@ -36,6 +39,9 @@ async function mainEntry() {
   // custom-middlewares
   app.use(notFound);
   app.use(errorHandler);
+
+  // auth. routes
+  app.use("/auth", authRouter);
 
   const PORT = process.env.PORT || 5000;
 
