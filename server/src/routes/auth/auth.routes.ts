@@ -76,7 +76,7 @@ authRouter.post(
         user: {
           id: newlyCreatedDbUser._id,
           clerkUserId: newlyCreatedDbUser.clerkUserId,
-          email: newlyCreatedDbUser.name,
+          email: newlyCreatedDbUser.email,
           role: newlyCreatedDbUser.role,
         },
       }),
@@ -104,7 +104,7 @@ authRouter.get(
         user: {
           id: dbUser._id,
           clerkUserId: dbUser.clerkUserId,
-          email: dbUser.name,
+          email: dbUser.email,
           role: dbUser.role,
         },
       }),
