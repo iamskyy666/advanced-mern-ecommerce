@@ -85,7 +85,7 @@ authRouter.post(
 );
 
 authRouter.get(
-  ",/me",
+  "/me",
   requireAuth,
   asyncHandler(async (req, res) => {
     const { userId } = getAuth(req);
